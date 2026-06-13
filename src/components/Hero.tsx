@@ -6,6 +6,8 @@ import {
 } from '@/lib/portfolio';
 import { ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
+import AnimatedProofStrip from './AnimatedProofStrip';
+import ScrollReveal from './ScrollReveal';
 
 export default function Hero() {
   return (
@@ -13,7 +15,9 @@ export default function Hero() {
       <section className="hero-section container" id="top" aria-labelledby="hero-title">
         <div className="hero-copy">
           <p className="eyebrow">{profile.eyebrow}</p>
-          <h1 id="hero-title">{profile.headline}</h1>
+          <h1 id="hero-title">
+            <span className="gradient-text">{profile.headline}</span>
+          </h1>
 
           <div className="hero-intro">
             <p className="hero-summary">{profile.summary}</p>
@@ -41,13 +45,23 @@ export default function Hero() {
         </div>
 
         <aside className="hero-profile" aria-label="Jeremy Dowdy profile summary">
-          <div className="hero-portrait" aria-hidden="true">
+          <div className="hero-visual">
             <Image
-              alt=""
-              height={360}
+              alt="Data architecture visualization showing interconnected systems"
+              fill
+              priority
+              src="/hero-visual.png"
+              sizes="(max-width: 980px) 320px, 480px"
+              style={{ objectFit: 'cover' }}
+            />
+          </div>
+          <div className="hero-portrait">
+            <Image
+              alt="Jeremy Dowdy"
+              height={80}
               priority
               src="/jeremy-dowdy-headshot.jpg"
-              width={360}
+              width={80}
             />
           </div>
           <div className="hero-focus">
@@ -62,28 +76,25 @@ export default function Hero() {
       </section>
 
       <section className="recruiter-snapshot container" aria-label="Recruiter snapshot">
-        <div className="snapshot-copy">
-          <p className="eyebrow">Why recruiters should keep reading</p>
-          <h2>Operational context, technical depth, and a record of turning analysis into systems.</h2>
-        </div>
+        <ScrollReveal>
+          <div className="snapshot-copy">
+            <p className="eyebrow">Why recruiters should keep reading</p>
+            <h2>Operational context, technical depth, and a record of turning analysis into systems.</h2>
+          </div>
+        </ScrollReveal>
 
         <div className="snapshot-grid">
           {recruiterHooks.map((hook) => (
-            <article className="snapshot-card" key={hook.title}>
-              <h3>{hook.title}</h3>
-              <p>{hook.body}</p>
-            </article>
+            <ScrollReveal key={hook.title}>
+              <article className="snapshot-card">
+                <h3>{hook.title}</h3>
+                <p>{hook.body}</p>
+              </article>
+            </ScrollReveal>
           ))}
         </div>
 
-        <div className="proof-strip">
-          {proofPoints.map((point) => (
-            <div className="proof-item" key={point.label}>
-              <strong>{point.value}</strong>
-              <span>{point.label}</span>
-            </div>
-          ))}
-        </div>
+        <AnimatedProofStrip proofPoints={proofPoints} />
       </section>
     </>
   );

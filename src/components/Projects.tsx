@@ -1,40 +1,70 @@
-import React from 'react';
-import { sql } from '@/lib/db';
-import ProjectGrid from './ProjectGrid';
-import { Project } from './ProjectDetailModal';
+import { caseStudies } from '@/lib/portfolio';
+import { CheckCircle2 } from 'lucide-react';
+import ScrollReveal from './ScrollReveal';
 
-export default async function Projects() {
-  let projects: Project[] = [];
-
-  try {
-    // Fetch projects sorted by featured first, then newest
-    projects = await sql<Project[]>`
-      SELECT id, title, description, content, image_url, tags, github_url, live_url, featured, created_at
-      FROM portfolio.projects
-      ORDER BY featured DESC, created_at DESC
-    `;
-  } catch (error) {
-    console.error('Failed to fetch projects from database:', error);
-  }
-
+export default function Projects() {
   return (
-    <section className="projects-section container" id="projects" style={{ paddingBlock: 'var(--space-xl)' }}>
-      <div className="section-header" style={{ marginBottom: 'var(--space-lg)', textAlign: 'center' }}>
-        <h2 className="section-title text-glow" style={{ fontSize: 'clamp(2rem, 5vw, 3rem)' }}>
-          Selected <span className="text-gradient">Projects</span>
-        </h2>
-        <p className="section-subtitle" style={{ color: 'var(--text-muted)', marginTop: 'var(--space-xs)', maxWidth: '600px', marginInline: 'auto' }}>
-          A selection of projects demonstrating full-stack engineering, database isolation, and automated third-party integrations.
-        </p>
-      </div>
-
-      {projects.length > 0 ? (
-        <ProjectGrid projects={projects} />
-      ) : (
-        <div className="empty-state glass-card" style={{ textAlign: 'center', padding: 'var(--space-lg)' }}>
-          <p>No projects found in database. Run the migration script to populate data.</p>
+    <section className="section container" id="case-studies" aria-labelledby="case-studies-title">
+      <ScrollReveal>
+        <div className="section-heading">
+          <p className="eyebrow">The work</p>
+          <h2 id="case-studies-title">
+            <span className="gradient-text">Three places where the story becomes concrete.</span>
+          </h2>
+          <p>
+            These are the threads I want a recruiter to notice: pricing intelligence, automated
+            profitability review, and AI-assisted systems that remove repetitive analysis work.
+          </p>
         </div>
-      )}
+      </ScrollReveal>
+
+      <div className="case-study-list">
+        {caseStudies.map((study, index) => (
+          <ScrollReveal key={study.id}>
+            <article className="case-study" id={study.id}>
+              <div className="case-index">{String(index + 1).padStart(2, '0')}</div>
+              <div className="case-main">
+                <p className="case-role">{study.role}</p>
+                <h3>{study.title}</h3>
+                <p className="case-context">{study.context}</p>
+
+                <div className="case-columns">
+                  <div>
+                    <h4>Architecture</h4>
+                    <ul>
+                      {study.architecture.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h4>Impact</h4>
+                    <ul>
+                      {study.impact.map((item) => (
+                        <li key={item}>
+                          <CheckCircle2 aria-hidden="true" size={16} />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <aside className="case-aside" aria-label={`${study.title} stack and proof`}>
+                <p>{study.proof}</p>
+                <div className="tag-list">
+                  {study.stack.map((item) => (
+                    <span className="tag" key={item}>
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </aside>
+            </article>
+          </ScrollReveal>
+        ))}
+      </div>
     </section>
   );
 }

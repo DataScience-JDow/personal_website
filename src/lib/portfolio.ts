@@ -60,6 +60,7 @@ export const profile = {
   location: 'Prosper, TX',
   email: 'Jeremydowdy76@gmail.com',
   linkedin: 'https://www.linkedin.com/in/jeremy-dowdy/',
+  github: 'https://github.com/jeremydowdy',
   resume: '/jeremy-dowdy-resume.pdf',
   eyebrow: 'Data Scientist | Analytics Engineer | AI-Native Data Engineer',
   headline: 'I turn industrial data into pricing intelligence, decision systems, and AI-powered workflows.',

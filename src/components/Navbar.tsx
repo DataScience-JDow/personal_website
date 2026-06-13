@@ -1,33 +1,43 @@
-import React from 'react';
+import { profile } from '@/lib/portfolio';
+import { FileDown } from 'lucide-react';
+import Image from 'next/image';
+
+const navItems = [
+  { label: 'Case Studies', href: '#case-studies' },
+  { label: 'Capabilities', href: '#capabilities' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Contact', href: '#contact' },
+];
 
 export default function Navbar() {
   return (
-    <header className="navbar-container">
-      <nav className="navbar container">
-        <a href="#" className="navbar-logo">
-          JD<span className="text-gradient">.</span>
+    <header className="site-header">
+      <nav className="container nav" aria-label="Primary navigation">
+        <a className="nav-brand" href="#top" aria-label="Jeremy Dowdy home">
+          <span className="nav-avatar">
+            <Image
+              alt="Jeremy Dowdy"
+              height={38}
+              priority
+              src="/jeremy-dowdy-headshot.jpg"
+              width={38}
+            />
+          </span>
+          <strong>Jeremy Dowdy</strong>
         </a>
-        
-        <ul className="navbar-links">
-          <li>
-            <a href="#about" className="navbar-link">About</a>
-          </li>
-          <li>
-            <a href="#projects" className="navbar-link">Projects</a>
-          </li>
-          <li>
-            <a href="#skills" className="navbar-link">Skills</a>
-          </li>
-          <li>
-            <a href="#contact" className="navbar-link">Contact</a>
-          </li>
+
+        <ul className="nav-links">
+          {navItems.map((item) => (
+            <li key={item.href}>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          ))}
         </ul>
-        
-        <div className="navbar-actions">
-          <a href="#contact" className="btn btn-primary" style={{ padding: '0.5rem 1rem', fontSize: '0.875rem' }}>
-            Get in touch
-          </a>
-        </div>
+
+        <a className="nav-resume" href={profile.resume} download>
+          <FileDown aria-hidden="true" size={17} />
+          <span>Resume</span>
+        </a>
       </nav>
     </header>
   );

@@ -67,6 +67,11 @@ async function main() {
       );
     `;
 
+    console.log('Hardening "portfolio.messages" for server-side inserts only...');
+    await sql`ALTER TABLE portfolio.messages ENABLE ROW LEVEL SECURITY;`;
+    await sql`REVOKE ALL ON SCHEMA portfolio FROM anon, authenticated;`;
+    await sql`REVOKE ALL ON ALL TABLES IN SCHEMA portfolio FROM anon, authenticated;`;
+
     console.log('Database tables successfully verified/created.');
 
     // Clear existing projects and skills to allow re-running seed safely

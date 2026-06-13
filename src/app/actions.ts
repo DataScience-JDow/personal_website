@@ -1,6 +1,6 @@
 'use server'
 
-import { sql } from '@/lib/db';
+import { getSql } from '@/lib/db';
 
 export interface ActionState {
   success: boolean;
@@ -12,18 +12,34 @@ export async function submitContactForm(prevState: ActionState | null, formData:
   const name = formData.get('name')?.toString().trim();
   const email = formData.get('email')?.toString().trim();
   const message = formData.get('message')?.toString().trim();
+  const website = formData.get('website')?.toString().trim();
 
-  // Basic validation
+  if (website) {
+    return {
+      success: true,
+      message: 'Thanks. Your note was received.',
+    };
+  }
+
   if (!name || !email || !message) {
     return { success: false, error: 'All fields are required.' };
   }
 
-  if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+  if (name.length > 80 || email.length > 120 || message.length > 1200) {
+    return { success: false, error: 'Please keep the note concise and try again.' };
+  }
+
+  if (message.length < 20) {
+    return { success: false, error: 'Please include a short note with a little context.' };
+  }
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return { success: false, error: 'Please enter a valid email address.' };
   }
 
   try {
-    // Insert form submission into the Supabase database portfolio schema
+    const sql = getSql();
+
     await sql`
       INSERT INTO portfolio.messages (name, email, message)
       VALUES (${name}, ${email}, ${message})
@@ -31,13 +47,13 @@ export async function submitContactForm(prevState: ActionState | null, formData:
     
     return { 
       success: true, 
-      message: "Your message has been sent successfully! I'll get back to you shortly." 
+      message: "Your note was sent. I'll follow up by email." 
     };
   } catch (error) {
     console.error('Error inserting message into portfolio.messages:', error);
     return { 
       success: false, 
-      error: 'An error occurred while sending your message. Please try again.' 
+      error: 'The form could not send right now. Email is the best fallback.' 
     };
   }
 }
