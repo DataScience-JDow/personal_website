@@ -408,7 +408,7 @@
     max-width: 480px;
     aspect-ratio: 1;
     border-radius: var(--radius-lg);
-    overflow: hidden;
+    overflow: visible;
     position: relative;
     animation: float 6s ease-in-out infinite;
   }
@@ -438,7 +438,7 @@
     border-radius: 50%;
     box-shadow: 0 0 20px var(--accent-glow);
     position: absolute;
-    bottom: -20px;
+    bottom: -40px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;

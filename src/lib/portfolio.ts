@@ -62,8 +62,8 @@ export const profile = {
   linkedin: 'https://www.linkedin.com/in/jeremy-dowdy/',
   github: 'https://github.com/jeremydowdy',
   resume: '/jeremy-dowdy-resume.pdf',
-  eyebrow: 'Data Scientist | Analytics Engineer | AI-Native Data Engineer',
-  headline: 'I turn industrial data into pricing intelligence, decision systems, and AI-powered workflows.',
+  eyebrow: 'Data Scientist & Analytics Engineer',
+  headline: 'Helping translate industrial complexity into pricing intelligence, structured decisions, and practical AI workflows.',
   summary:
     'Across seven years at HOLT CAT, I have grown from business-facing analysis into data science, analytics engineering, and enterprise data platform work. That progression shaped how I build: start with the stakeholder problem, learn the operating model, then design the data system behind the decision.',
   target:

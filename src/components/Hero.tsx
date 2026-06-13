@@ -54,15 +54,15 @@ export default function Hero() {
               sizes="(max-width: 980px) 320px, 480px"
               style={{ objectFit: 'cover' }}
             />
-          </div>
-          <div className="hero-portrait">
-            <Image
-              alt="Jeremy Dowdy"
-              height={80}
-              priority
-              src="/jeremy-dowdy-headshot.jpg"
-              width={80}
-            />
+            <div className="hero-portrait">
+              <Image
+                alt="Jeremy Dowdy"
+                height={80}
+                priority
+                src="/jeremy-dowdy-headshot.jpg"
+                width={80}
+              />
+            </div>
           </div>
           <div className="hero-focus">
             <span>Currently</span>

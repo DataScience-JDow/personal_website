@@ -33,7 +33,7 @@ export default function ContactForm() {
           <div className="contact-copy">
             <p className="eyebrow">Recruiter flow</p>
             <h2 id="contact-title">
-              <span className="gradient-text">If this sounds close to the role, I would like to talk.</span>
+              <span className="gradient-text">If this aligns with what your team is building, I'd love to connect.</span>
             </h2>
             <p>
               I am looking for work where data science, analytics engineering, and applied AI are tied

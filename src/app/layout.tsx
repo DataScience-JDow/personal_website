@@ -60,7 +60,7 @@ export default function RootLayout({
         <footer className="site-footer">
           <div className="container footer-inner">
             <p>Jeremy Dowdy</p>
-            <p>Data Scientist · Analytics Engineer · AI-Native Data Engineer</p>
+            <p>Data Scientist & Analytics Engineer</p>
           </div>
         </footer>
       </body>
