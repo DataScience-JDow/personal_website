@@ -78,7 +78,7 @@ export default function Hero() {
       <section className="recruiter-snapshot container" aria-label="Recruiter snapshot">
         <ScrollReveal>
           <div className="snapshot-copy">
-            <p className="eyebrow">Why recruiters should keep reading</p>
+            <p className="eyebrow">What I bring to the table</p>
             <h2>Operational context, technical depth, and a record of turning analysis into systems.</h2>
           </div>
         </ScrollReveal>

@@ -85,9 +85,9 @@ export const heroActions = [
 
 export const proofPoints = [
   { value: '7+ yrs', label: 'progressive data platform experience' },
-  { value: '35%', label: 'faster pipeline delivery with AI workflows' },
-  { value: '25%', label: 'lower ingestion latency through warehouse tuning' },
-  { value: '40%', label: 'less manual reporting via automated workflows' },
+  { value: '$1B+', label: 'machinery delivery value facilitated annually' },
+  { value: '10', label: 'operating departments coordinated via pipelines' },
+  { value: '1', label: 'new facility constructed from market analysis' },
 ] satisfies ProofPoint[];
 
 export const recruiterHooks = [
