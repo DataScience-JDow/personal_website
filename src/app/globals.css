@@ -536,7 +536,7 @@
   .snapshot-copy h2 {
     margin-top: 12px;
     font-size: clamp(1.5rem, 2.5vw, 2rem);
-    color: #ffffff;
+    color: #e2e8f0;
   }
 
   .snapshot-grid {
@@ -637,6 +637,7 @@
   .section-heading h2 {
     font-size: clamp(2rem, 4.5vw, 4rem);
     font-weight: 800;
+    color: #e2e8f0;
   }
 
   .section-heading p:not(.eyebrow) {
@@ -1017,7 +1018,7 @@
   .contact-copy h2 {
     max-width: 600px;
     font-size: clamp(1.8rem, 3.5vw, 3rem);
-    color: #ffffff;
+    color: #e2e8f0;
   }
 
   .contact-copy p:not(.eyebrow) {
