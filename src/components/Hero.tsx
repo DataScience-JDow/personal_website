@@ -16,7 +16,7 @@ export default function Hero() {
         <div className="hero-copy">
           <p className="eyebrow">{profile.eyebrow}</p>
           <h1 id="hero-title">
-            <span className="gradient-text">{profile.headline}</span>
+            {profile.headline}
           </h1>
 
           <div className="hero-intro">
@@ -45,24 +45,14 @@ export default function Hero() {
         </div>
 
         <aside className="hero-profile" aria-label="Jeremy Dowdy profile summary">
-          <div className="hero-visual">
+          <div className="hero-visual-portrait">
             <Image
-              alt="Data architecture visualization showing interconnected systems"
-              fill
+              alt="Jeremy Dowdy"
+              height={180}
               priority
-              src="/hero-visual.png"
-              sizes="(max-width: 980px) 320px, 480px"
-              style={{ objectFit: 'cover' }}
+              src="/jeremy-dowdy-headshot.jpg"
+              width={180}
             />
-            <div className="hero-portrait">
-              <Image
-                alt="Jeremy Dowdy"
-                height={80}
-                priority
-                src="/jeremy-dowdy-headshot.jpg"
-                width={80}
-              />
-            </div>
           </div>
           <div className="hero-focus">
             <span>Currently</span>
