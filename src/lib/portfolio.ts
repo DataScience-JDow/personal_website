@@ -38,6 +38,7 @@ export type CaseStudy = {
   impact: string[];
   stack: string[];
   proof: string;
+  category: 'work' | 'personal';
 };
 
 export type CapabilityGroup = {
@@ -106,64 +107,130 @@ export const recruiterHooks = [
 
 export const caseStudies = [
   {
-    id: 'market-pricing-platform',
-    title: 'Market-Based Pricing and Data Platform Modernization',
+    id: 'market-pricing',
+    title: 'Machine Quoting & Market-Based Pricing Engine',
     role: 'Data Scientist, HOLT CAT',
     context:
-      'Architected pricing intelligence and contributed to Project Galaxy, a migration from legacy Snowflake, dbt, and Tableau footprints into Microsoft Fabric Lakehouse architecture.',
+      'Architected and deployed an end-to-end pricing intelligence system powered by machine learning to automate the company\'s equipment quoting process.',
     architecture: [
-      'Microsoft Fabric lakehouse migration strategy',
-      'Medallion data modeling across bronze, silver, and gold layers',
-      'Market-rate analysis logic for commercial machinery pricing',
-      'Executive analytics and operational decision support',
+      'XGBoost classification and regression models trained on historical deal parameters',
+      'Snowflake Notebooks for exploratory data analysis, feature engineering, and model validation',
+      'Streamlit interface deployed internally for pricing analysts and commercial teams',
+      'Automated scoring pipelines running natively inside Snowflake compute layers',
     ],
     impact: [
-      'Optimized commercial gross-margin decisioning with dynamic market-rate signals.',
-      'Reduced fragmented regional data silos through a unified lakehouse target state.',
-      'Translated ambiguous stakeholder goals into programmatic data requirements.',
+      'Replaced manual quoting spreadsheets with dynamic machine quoting recommendations.',
+      'Optimized transaction capture and realized margin accuracy across high-volume quotes.',
+      'Reduced average turnaround time for pricing review from hours to near-instantaneous.',
     ],
-    stack: ['Microsoft Fabric', 'Snowflake', 'dbt', 'SQL', 'Power BI', 'Tableau'],
-    proof: 'Enterprise migration, pricing architecture, and executive-facing analytics in an industrial operating environment.',
+    stack: ['Snowflake', 'Streamlit', 'Snowflake Notebooks', 'XGBoost', 'Python', 'SQL'],
+    proof: 'Machine quoting and machine learning model pipeline that powers daily commercial operations.',
+    category: 'work',
   },
   {
-    id: 'profitability-automation',
-    title: 'Automated Cost Auditing and Profitability Platform',
-    role: 'Full-stack data product architect',
+    id: 'fabric-migration',
+    title: 'Enterprise Lakehouse Migration & Platform Modernization',
+    role: 'Analytics Engineering Lead, HOLT CAT',
     context:
-      'Built a proprietary internal application to automate receipt capture, cost auditing, inventory analysis, and near-real-time profit margin visibility.',
+      'Co-led Project Galaxy, a massive migration from legacy Snowflake, dbt, and Tableau footprints into a unified Microsoft Fabric Lakehouse environment.',
     architecture: [
-      'Serverless web application deployed on Vercel',
-      'Supabase PostgreSQL persistence layer',
-      'Python automation and OCR-assisted document extraction',
-      'Operational dashboards for margin analysis',
+      'Medallion data lakehouse architecture (Bronze, Silver, Gold layers)',
+      'Microsoft Fabric semantic models and automated delta parquet pipelines',
+      'dbt data transform normalization layers translated into Fabric environments',
+      'Enterprise-wide Power BI reports and executive analytical dashboards',
     ],
     impact: [
-      'Moved recurring cost-auditing work out of manual spreadsheet loops.',
-      'Created a reusable foundation for receipt ingestion and profitability review.',
-      'Connected data capture, validation, and reporting in one operating workflow.',
+      'Modernized the analytics stack, reducing reliance on legacy infrastructure and third-party tools.',
+      'Standardized metrics across multiple business divisions via Fabric Gold semantic tables.',
+      'Established migration patterns now adopted across the entire analytics engineering team.',
     ],
-    stack: ['Supabase', 'Vercel', 'Python', 'PostgreSQL', 'Computer Vision', 'OCR'],
-    proof: 'A data product that connects automation, database design, and business margin analysis.',
+    stack: ['Microsoft Fabric', 'Power BI', 'dbt', 'Snowflake', 'SQL', 'Tableau'],
+    proof: 'A large-scale migration of legacy databases into Fabric lakehouses and Power BI semantic layers.',
+    category: 'work',
   },
   {
-    id: 'agentic-finance-engine',
-    title: 'Agentic Personal Finance and Wealth Engine',
-    role: 'AI workflow designer and builder',
+    id: 'coti-pipeline',
+    title: 'Customer Order to Invoice (COTI) Integration Pipeline',
+    role: 'Data Architect & Integration Engineer, HOLT CAT',
     context:
-      'Designed a personal wealth tracking system with agentic aggregation workflows that reconcile transactions, forecast cash flow, and surface budget anomalies.',
+      'Engineered a mission-critical pipeline linking ERP and CRM data directly into monday.com to streamline the company\'s high-stakes Customer Order to Invoice (COTI) process.',
     architecture: [
-      'LLM-assisted orchestration for recurring financial scans',
-      'Autonomous categorization and reconciliation routines',
-      'Forecasting workflows for budget and cash-flow variables',
-      'Human-review checkpoints for sensitive financial decisions',
+      'Automated data extraction pipelines pulling from ERP (Salesforce, SAP/DB) and CRM systems',
+      'Secure webhook handlers and Monday API integrations for live status synchronizations',
+      'Cross-department notification triggers and task-reassignment workflows',
+      'Data reconciliation models to prevent order double-entry or processing bottlenecks',
     ],
     impact: [
-      'Reduced manual transaction review and recurring expense audits.',
-      'Created an applied testbed for multi-agent financial workflows.',
-      'Demonstrated practical AI engineering beyond prompt-level experimentation.',
+      'Facilitates order tracking across 10 business departments, improving delivery visibility.',
+      'Powers the operational pipeline responsible for delivering over $1 Billion in machinery annually.',
+      'Significantly reduced manual follow-ups and order invoice latency.',
     ],
-    stack: ['Python', 'LLM Workflows', 'Antigravity', 'Cursor', 'Automation', 'Financial Data'],
-    proof: 'A working example of applying AI agents to messy personal finance operations with practical guardrails.',
+    stack: ['Python', 'SQL', 'Monday API', 'Salesforce CRM', 'ERP Integration', 'Webhooks'],
+    proof: 'Mission-critical operational pipeline processing CRM/ERP data for a $1B+ machine delivery engine.',
+    category: 'work',
+  },
+  {
+    id: 'location-analysis',
+    title: 'Geospatial & Demographic Market Analysis for Facility Expansion',
+    role: 'Lead Data Analyst, HOLT CAT',
+    context:
+      'Conducted a comprehensive demographic and market share analysis that directly justified the capital expenditure and development of a new full-service operating facility.',
+    architecture: [
+      'Geospatial clustering models of customer migration patterns and fleet density',
+      'Multi-variable regression incorporating population growth, regional GDP, and competitor share',
+      'Interactive map visualizations and executive scenario-modeling calculators',
+      'Financial feasibility and market share capture projections',
+    ],
+    impact: [
+      'Directly resulted in the approval and construction of a new full-service operating facility.',
+      'Drastically improved regional market share and reduced service technician travel times.',
+      'Established a data-driven framework for future real estate and territory expansion planning.',
+    ],
+    stack: ['Python', 'Pandas', 'SQL', 'Geospatial Analysis', 'Scikit-learn', 'Power BI'],
+    proof: 'Data analysis and executive presentation that drove capital investment for a new physical facility.',
+    category: 'work',
+  },
+  {
+    id: 'louie-boards',
+    title: 'Louie Boards Charcuterie CRM & Dashboard',
+    role: 'Creator & Full-stack Developer',
+    context:
+      'Built a custom, isolated CRM and order tracker for my wife\'s boutique charcuterie business, streamlining customer engagement and order fulfillment.',
+    architecture: [
+      'Next.js client interface deployed on Vercel',
+      'Supabase PostgreSQL data layer with isolated development/production schemas',
+      'Square API integration for transactional webhook captures and catalog syncs',
+      'Automated SMS notifications and customer order history dashboards',
+    ],
+    impact: [
+      'Moved customer records from manual messages into a structured CRM database.',
+      'Automated payment-to-order workflow validation using Square webhooks.',
+      'Saved custom product builder options directly associated with client historical preferences.',
+    ],
+    stack: ['Next.js', 'Supabase', 'Vercel', 'Square API', 'TypeScript', 'PostgreSQL'],
+    proof: 'A tailored serverless CRM and e-commerce tracker built on a robust Postgres data layer.',
+    category: 'personal',
+  },
+  {
+    id: 'budgeting-app',
+    title: 'Net Worth & Cashflow Management Engine',
+    role: 'Creator & Backend Developer',
+    context:
+      'Developed a high-performance personal finance tracker to aggregate family cashflow, budgeting logs, and long-term investment progress.',
+    architecture: [
+      'Serverless API built using Vercel Serverless Functions and Supabase',
+      'Cron pipeline keep-alive system to prevent database cold-start latency',
+      'Custom transaction caching layers for speed optimization',
+      'Interactive visualization dashboards using Recharts for surplus tracking',
+    ],
+    impact: [
+      'Centralized transaction data and budgeting routines into a single platform.',
+      'Established real-time cashflow projections and automated anomaly alerts.',
+      'Optimized database performance to run queries in under 50ms using strict indexing.',
+    ],
+    stack: ['TypeScript', 'Next.js', 'Supabase', 'Prisma ORM', 'Recharts', 'Vercel Crons'],
+    proof: 'A personal finance hub demonstrating serverless automation, custom caching, and clean dataviz.',
+    category: 'personal',
   },
 ] satisfies CaseStudy[];
 
