@@ -85,15 +85,15 @@ export const heroActions = [
 
 export const proofPoints = [
   { value: '7+ yrs', label: 'progressive data platform experience' },
-  { value: '$1B+', label: 'machinery delivery value facilitated annually' },
-  { value: '10', label: 'operating departments coordinated via pipelines' },
-  { value: '1', label: 'new facility constructed from market analysis' },
+  { value: 'End-to-End', label: 'delivering from raw database model to dashboard' },
+  { value: 'Collaborative', label: 'partnering with teams to solve business needs' },
+  { value: 'Certified', label: 'Fabric Analytics Engineer Associate (DP-600)' },
 ] satisfies ProofPoint[];
 
 export const recruiterHooks = [
   {
-    title: 'Industrial-scale business context',
-    body: 'My strongest work sits where pricing, fleet logistics, asset health, margin, and executive reporting intersect.',
+    title: 'Strong Business Partnership',
+    body: 'I make it a priority to deeply understand the business context. My strong suit is partnering directly with stakeholders to build systems they trust.',
   },
   {
     title: 'Analytics engineering depth',
