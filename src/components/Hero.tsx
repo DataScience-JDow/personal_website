@@ -3,6 +3,7 @@ import {
   profile,
   proofPoints,
   recruiterHooks,
+  systemVisualNodes,
 } from '@/lib/portfolio';
 import { ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
@@ -45,14 +46,17 @@ export default function Hero() {
         </div>
 
         <aside className="hero-profile" aria-label="Jeremy Dowdy profile summary">
-          <div className="hero-visual-portrait">
-            <Image
-              alt="Jeremy Dowdy"
-              height={180}
-              priority
-              src="/jeremy-dowdy-headshot.jpg"
-              width={180}
-            />
+          <div className="hero-portrait-wrapper">
+            <div className="hero-portrait-ring" aria-hidden="true" />
+            <div className="hero-visual-portrait">
+              <Image
+                alt="Jeremy Dowdy"
+                height={180}
+                priority
+                src="/jeremy-dowdy-headshot.jpg"
+                width={180}
+              />
+            </div>
           </div>
           <div className="hero-focus">
             <span>Currently</span>
@@ -61,6 +65,29 @@ export default function Hero() {
               <span>See career arc</span>
               <ArrowUpRight aria-hidden="true" size={15} />
             </a>
+          </div>
+
+          <div className="hero-pipeline">
+            <div className="pipeline-title">Operational Data Flow</div>
+            <div className="pipeline-nodes">
+              {systemVisualNodes.map((node, idx) => {
+                const Icon = node.icon;
+                return (
+                  <div key={node.label} className="pipeline-node">
+                    <div className="node-icon-wrapper">
+                      <Icon size={14} aria-hidden="true" />
+                    </div>
+                    <div className="node-content">
+                      <div className="node-label">{node.label}</div>
+                      <div className="node-detail">{node.detail}</div>
+                    </div>
+                    {idx < systemVisualNodes.length - 1 && (
+                      <div className="pipeline-connector" aria-hidden="true" />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </aside>
       </section>
