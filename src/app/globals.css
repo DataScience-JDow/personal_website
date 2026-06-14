@@ -361,8 +361,8 @@
   /* --- Hero Section --- */
   .hero-section {
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 48px;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 64px;
     align-items: center;
     padding-top: 80px;
     padding-bottom: 80px;
@@ -439,170 +439,37 @@
     object-fit: cover;
   }
 
-  .pricing-visual-card {
-    border: 1px solid var(--line);
-    border-radius: var(--radius);
-    background: var(--bg-card);
-    backdrop-filter: blur(12px);
-    padding: 20px;
-    width: 100%;
-    max-width: 400px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .visual-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .focus-stack {
+    margin-top: 16px;
     margin-bottom: 16px;
-  }
-
-  .visual-status-indicator {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 12px 0;
     display: flex;
-    align-items: center;
-    gap: 6px;
-    color: var(--accent);
-    font-size: 0.65rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
   }
 
-  .pulse-dot {
-    width: 6px;
-    height: 6px;
-    background: var(--accent);
-    border-radius: 50%;
-    animation: glow-pulse 2s infinite;
-  }
-
-  .visual-title {
+  .focus-stack span {
+    display: inline-block;
     color: var(--muted);
-    font-size: 0.68rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .chart-container {
-    position: relative;
-  }
-
-  .pricing-chart {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  .chart-axis {
-    stroke: var(--line-strong);
-    stroke-width: 1;
-  }
-
-  .chart-grid-line {
-    stroke: var(--line);
-    stroke-width: 1;
-  }
-
-  .regression-line {
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 1000;
-  }
-
-  .animate-draw {
-    animation: draw-line 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  }
-
-  .chart-dot {
-    transform-origin: center;
-    transform: scale(0);
-    animation: pop-dot 400ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-  }
-
-  .historical-dot {
-    fill: var(--line-strong);
-    stroke: var(--bg);
-    stroke-width: 1;
-  }
-
-  .active-dot {
-    fill: var(--accent);
-    stroke: var(--bg);
-    stroke-width: 2;
-    animation-delay: 1.2s;
-  }
-
-  .active-dot-pulse {
-    fill: none;
-    stroke: var(--accent);
-    stroke-width: 1.5;
-    animation: ping-circle-chart 2s cubic-bezier(0, 0, 0.2, 1) infinite;
-    animation-delay: 1.4s;
-    transform-origin: 220px 75px;
-  }
-
-  .chart-tooltip {
-    position: absolute;
-    bottom: 12px;
-    right: 12px;
-    background: rgba(10, 14, 23, 0.85);
-    border: 1px solid var(--line-strong);
-    border-radius: var(--radius-sm);
-    padding: 8px 12px;
-    backdrop-filter: blur(8px);
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    width: 130px;
-    box-shadow: var(--shadow);
-    pointer-events: none;
-    animation: fade-in 0.5s ease forwards;
-    animation-delay: 1.6s;
-    opacity: 0;
-  }
-
-  .tooltip-row {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.72rem;
-    line-height: 1.2;
-  }
-
-  .tooltip-label {
-    color: var(--muted);
-  }
-
-  .tooltip-value {
-    color: #ffffff;
+    font-size: 0.78rem;
     font-weight: 600;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 3px 8px;
+    text-transform: none;
+    letter-spacing: normal;
+    transition: all var(--transition-fast);
   }
 
-  .tooltip-value.highlight {
+  .focus-stack span:hover {
     color: var(--accent);
-  }
-
-  @keyframes draw-line {
-    to {
-      stroke-dashoffset: 0;
-    }
-  }
-
-  @keyframes pop-dot {
-    to {
-      transform: scale(1);
-    }
-  }
-
-  @keyframes ping-circle-chart {
-    0% {
-      transform: scale(0.5);
-      opacity: 1;
-    }
-    100% {
-      transform: scale(2.2);
-      opacity: 0;
-    }
+    border-color: rgba(6, 214, 160, 0.25);
+    background: var(--accent-soft);
+    transform: translateY(-1px);
   }
 
   .hero-focus {

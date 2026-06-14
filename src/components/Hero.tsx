@@ -4,7 +4,6 @@ import {
   proofPoints,
   recruiterHooks,
 } from '@/lib/portfolio';
-import PricingVisual from './PricingVisual';
 import { ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
 import AnimatedProofStrip from './AnimatedProofStrip';
@@ -61,13 +60,21 @@ export default function Hero() {
           <div className="hero-focus">
             <span>Currently</span>
             <p>Data Scientist at HOLT CAT, leading pricing intelligence, Fabric migration work, and AI-assisted delivery.</p>
+            
+            <div className="focus-stack" aria-label="Core tools used currently">
+              <span>Python</span>
+              <span>SQL</span>
+              <span>dbt</span>
+              <span>Fabric</span>
+              <span>Snowflake</span>
+              <span>Power BI</span>
+            </div>
+
             <a href="#experience">
               <span>See career arc</span>
               <ArrowUpRight aria-hidden="true" size={15} />
             </a>
           </div>
-
-          <PricingVisual />
         </aside>
       </section>
 
