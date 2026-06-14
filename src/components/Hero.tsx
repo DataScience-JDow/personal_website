@@ -3,8 +3,8 @@ import {
   profile,
   proofPoints,
   recruiterHooks,
-  systemVisualNodes,
 } from '@/lib/portfolio';
+import PricingVisual from './PricingVisual';
 import { ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
 import AnimatedProofStrip from './AnimatedProofStrip';
@@ -67,28 +67,7 @@ export default function Hero() {
             </a>
           </div>
 
-          <div className="hero-pipeline">
-            <div className="pipeline-title">Operational Data Flow</div>
-            <div className="pipeline-nodes">
-              {systemVisualNodes.map((node, idx) => {
-                const Icon = node.icon;
-                return (
-                  <div key={node.label} className="pipeline-node">
-                    <div className="node-icon-wrapper">
-                      <Icon size={14} aria-hidden="true" />
-                    </div>
-                    <div className="node-content">
-                      <div className="node-label">{node.label}</div>
-                      <div className="node-detail">{node.detail}</div>
-                    </div>
-                    {idx < systemVisualNodes.length - 1 && (
-                      <div className="pipeline-connector" aria-hidden="true" />
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+          <PricingVisual />
         </aside>
       </section>
 
