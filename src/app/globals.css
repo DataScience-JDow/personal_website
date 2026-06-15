@@ -79,6 +79,7 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 88px;
   }
 
   body {
@@ -789,6 +790,26 @@
     line-height: 1.6;
   }
 
+  .case-proof-link {
+    display: inline-flex;
+    margin-top: 18px;
+    color: var(--accent);
+    font-size: 0.88rem;
+    font-weight: 700;
+    transition: color var(--transition-fast);
+  }
+
+  .case-proof-link:hover {
+    color: #ffffff;
+  }
+
+  .case-proof-note {
+    margin-top: 18px;
+    color: var(--muted);
+    font-size: 0.82rem;
+    line-height: 1.6;
+  }
+
   /* --- Tag System --- */
   .tag-list {
     display: flex;
@@ -853,6 +874,241 @@
     color: var(--muted);
     font-size: 0.92rem;
     line-height: 1.6;
+  }
+
+  /* --- Public Proof Section --- */
+  .public-proof-intro {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .proof-note,
+  .public-proof-card,
+  .project-proof-card,
+  .project-proof-panel,
+  .project-proof-next-item,
+  .project-proof-metric {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+  }
+
+  .proof-note {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+    padding: 18px 20px;
+  }
+
+  .proof-note svg {
+    color: var(--accent);
+    margin-top: 2px;
+  }
+
+  .proof-note p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .public-proof-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .public-proof-card {
+    display: grid;
+    gap: 16px;
+    padding: 28px;
+    transition: all var(--transition-smooth);
+  }
+
+  .public-proof-card:hover,
+  .project-proof-card:hover,
+  .project-proof-next-item:hover {
+    border-color: rgba(6, 214, 160, 0.28);
+    box-shadow: var(--shadow-glow);
+    transform: translateY(-2px);
+  }
+
+  .public-proof-card-header {
+    display: grid;
+    gap: 8px;
+  }
+
+  .public-proof-card h3,
+  .project-proof-card h3 {
+    font-size: 1.35rem;
+    color: #ffffff;
+  }
+
+  .public-proof-card-summary,
+  .public-proof-card-angle,
+  .project-proof-card p,
+  .project-proof-panel p,
+  .project-proof-next-item p {
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .public-proof-card-angle {
+    font-size: 0.9rem;
+  }
+
+  .public-proof-link,
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent);
+    font-weight: 700;
+    transition: gap var(--transition-fast), color var(--transition-fast);
+  }
+
+  .public-proof-link:hover,
+  .back-link:hover {
+    gap: 12px;
+    color: #ffffff;
+  }
+
+  /* --- Proof Pages --- */
+  .project-proof-page {
+    padding-bottom: 80px;
+  }
+
+  .project-proof-hero {
+    padding-top: 48px;
+  }
+
+  .project-proof-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 28px;
+    margin-top: 24px;
+  }
+
+  .project-proof-copy h1 {
+    max-width: 920px;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.02;
+  }
+
+  .project-proof-strapline {
+    margin-top: 18px;
+    color: #d4d9e1;
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    line-height: 1.6;
+  }
+
+  .project-proof-summary {
+    max-width: 760px;
+    margin-top: 18px;
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  .project-proof-sidebar {
+    display: grid;
+    align-content: start;
+    gap: 14px;
+  }
+
+  .project-proof-panel {
+    padding: 18px;
+  }
+
+  .project-proof-panel-label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--accent);
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .project-proof-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+  }
+
+  .project-proof-metric {
+    padding: 24px 20px;
+  }
+
+  .project-proof-metric strong {
+    display: block;
+    font-size: clamp(1.4rem, 2.8vw, 2rem);
+    font-weight: 800;
+    line-height: 1.05;
+    color: #ffffff;
+  }
+
+  .project-proof-metric span {
+    display: block;
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  .project-proof-columns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .project-proof-card {
+    padding: 28px;
+    transition: all var(--transition-smooth);
+  }
+
+  .project-proof-card-note {
+    margin-top: 14px;
+    font-size: 0.92rem;
+  }
+
+  .project-proof-list {
+    display: grid;
+    gap: 14px;
+    margin-top: 16px;
+  }
+
+  .project-proof-list li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .project-proof-list svg,
+  .project-proof-next-item svg {
+    color: var(--accent);
+    flex: 0 0 auto;
+    margin-top: 4px;
+  }
+
+  .project-architecture-grid,
+  .project-proof-next {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .project-proof-next-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+    padding: 22px 20px;
+    transition: all var(--transition-smooth);
   }
 
   /* --- Timeline --- */
@@ -1397,13 +1653,14 @@
 
     .hero-section {
       grid-template-columns: 1fr;
+      gap: 32px;
       padding-top: 48px;
       padding-bottom: 48px;
       min-height: auto;
     }
 
     .hero-profile {
-      order: -1;
+      order: 0;
     }
 
 
@@ -1411,7 +1668,12 @@
     .proof-strip,
     .snapshot-grid,
     .capability-grid,
-    .credential-grid {
+    .credential-grid,
+    .project-proof-metrics,
+    .project-architecture-grid,
+    .project-proof-next,
+    .public-proof-grid,
+    .public-proof-intro {
       grid-template-columns: 1fr 1fr;
     }
 
@@ -1427,6 +1689,11 @@
       grid-template-columns: 1fr;
     }
 
+    .project-proof-shell,
+    .project-proof-columns {
+      grid-template-columns: 1fr;
+    }
+
     .timeline::before {
       display: none;
     }
@@ -1437,6 +1704,10 @@
   }
 
   @media (max-width: 720px) {
+    html {
+      scroll-padding-top: 76px;
+    }
+
     .container {
       width: min(100% - 32px, var(--max));
     }
@@ -1467,7 +1738,13 @@
     .case-columns,
     .capability-grid,
     .timeline-item,
-    .credential-grid {
+    .credential-grid,
+    .project-proof-metrics,
+    .project-architecture-grid,
+    .project-proof-next,
+    .public-proof-grid,
+    .public-proof-intro,
+    .project-proof-columns {
       grid-template-columns: 1fr;
     }
 
@@ -1482,6 +1759,21 @@
 
     .section {
       padding-top: 72px;
+    }
+
+    .project-proof-hero {
+      padding-top: 24px;
+    }
+
+    .project-proof-copy h1 {
+      font-size: clamp(2rem, 11vw, 3rem);
+    }
+
+    .project-proof-card,
+    .public-proof-card,
+    .project-proof-panel,
+    .project-proof-next-item {
+      padding: 22px;
     }
 
     .section-muted {

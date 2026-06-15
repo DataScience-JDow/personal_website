@@ -39,6 +39,7 @@ export type CaseStudy = {
   stack: string[];
   proof: string;
   category: 'work' | 'personal';
+  proofPageSlug?: string;
 };
 
 export type CapabilityGroup = {
@@ -56,12 +57,40 @@ export type ExperienceItem = {
   highlights: string[];
 };
 
+export type ProofMetric = {
+  value: string;
+  label: string;
+};
+
+export type ProofArchitectureItem = {
+  title: string;
+  detail: string;
+};
+
+export type PublicProofPage = {
+  slug: string;
+  studyId: string;
+  eyebrow: string;
+  strapline: string;
+  publicSummary: string;
+  recruiterAngle: string;
+  status: string;
+  repositoryStatus: string;
+  metrics: ProofMetric[];
+  challenge: string;
+  constraints: string[];
+  architecture: ProofArchitectureItem[];
+  productDecisions: string[];
+  publicProof: string[];
+  nextIterations: string[];
+};
+
 export const profile = {
   name: 'Jeremy Dowdy',
   location: 'Prosper, TX',
   email: 'Jeremydowdy76@gmail.com',
   linkedin: 'https://www.linkedin.com/in/jeremy-dowdy/',
-  github: 'https://github.com/jeremydowdy',
+  github: 'https://github.com/DataScience-JDow',
   resume: '/jeremy-dowdy-resume.pdf',
   eyebrow: 'Data Scientist & Analytics Engineer',
   headline: 'Helping translate industrial complexity into pricing intelligence, structured decisions, and practical AI workflows.',
@@ -210,6 +239,7 @@ export const caseStudies = [
     stack: ['Next.js', 'Supabase', 'Vercel', 'Square API', 'TypeScript', 'PostgreSQL'],
     proof: 'A tailored serverless CRM and e-commerce tracker built on a robust Postgres data layer.',
     category: 'personal',
+    proofPageSlug: 'louie-boards',
   },
   {
     id: 'budgeting-app',
@@ -231,6 +261,7 @@ export const caseStudies = [
     stack: ['TypeScript', 'Next.js', 'Supabase', 'Prisma ORM', 'Recharts', 'Vercel Crons'],
     proof: 'A personal finance hub demonstrating serverless automation, custom caching, and clean dataviz.',
     category: 'personal',
+    proofPageSlug: 'budgeting-engine',
   },
 ] satisfies CaseStudy[];
 
@@ -366,3 +397,142 @@ export const operatingPrinciples = [
     icon: BarChart3,
   },
 ];
+
+export const publicProofPages = [
+  {
+    slug: 'louie-boards',
+    studyId: 'louie-boards',
+    eyebrow: 'Public Build Proof',
+    strapline:
+      'A custom CRM, order tracker, and fulfillment workflow for a boutique food business with highly specific order details and repeat-customer preferences.',
+    publicSummary:
+      'This project matters because it shows how I translate messy real-world operating workflows into a structured product, not just a frontend. The core problem was taking fragmented customer conversations, custom order details, payments, and follow-up logistics and moving them into a system with durable records and cleaner handoffs.',
+    recruiterAngle:
+      'Strongest signal for recruiters: product-minded data design, API integration, and pragmatic workflow automation for a live small-business use case.',
+    status: 'Active personal project with room for more public artifacts.',
+    repositoryStatus:
+      'Architecture, workflow design, and implementation details are documented here while customer-facing operational details remain private.',
+    metrics: [
+      { value: '3 systems', label: 'customer intake, payment events, and fulfillment status aligned' },
+      { value: '2 envs', label: 'isolated development and production database schemas' },
+      { value: 'Webhook-led', label: 'order validation triggered from external payment events' },
+      { value: 'Structured history', label: 'repeat customer preferences captured for future orders' },
+    ],
+    challenge:
+      'The business was running through texts, custom requests, and ad hoc memory. That is workable at low volume, but it breaks as soon as you need repeatability, customer history, or clear order-state visibility.',
+    constraints: [
+      'No generic CRM matched the exact flow of custom charcuterie orders, pickup timing, and repeat personalization.',
+      'The data model needed to preserve both transactional accuracy and human context, such as saved product preferences.',
+      'Operational reliability mattered more than visual novelty because missed webhook or order-state transitions would create real customer friction.',
+    ],
+    architecture: [
+      {
+        title: 'Frontend and operator workflow',
+        detail:
+          'A Next.js interface supports order review, customer lookup, and status visibility without forcing the operator to bounce between spreadsheets, messages, and payment tools.',
+      },
+      {
+        title: 'Relational core',
+        detail:
+          'Supabase Postgres stores customers, orders, product options, and repeat-order context as first-class relational entities instead of free-form notes.',
+      },
+      {
+        title: 'Payments and sync',
+        detail:
+          'Square webhook events are used to validate payment milestones and keep the order record aligned with external transaction activity.',
+      },
+      {
+        title: 'Operational messaging',
+        detail:
+          'Notification logic supports the next step in the order lifecycle so fulfillment work does not depend on manual memory alone.',
+      },
+    ],
+    productDecisions: [
+      'Modeled repeat-order preferences as reusable customer context rather than burying them inside one-off order text.',
+      'Separated development and production schemas early so experimentation would not threaten live order data.',
+      'Treated webhook handling as an operational integrity feature, not just an integration checkbox.',
+    ],
+    publicProof: [
+      'The case study itself documents the workflow boundaries, data model choices, and business process being automated.',
+      'The stack reflects a full path from product interface to database design to external API event handling.',
+      'Because this is a family business system, the public material emphasizes architecture and decisions rather than exposing customer records or internal operational details.',
+    ],
+    nextIterations: [
+      'Prepare a sanitized repo walkthrough with schema excerpts and selected API integration patterns.',
+      'Add a small gallery of redacted screens showing customer search, order history, and fulfillment status transitions.',
+      'Document the order lifecycle as a sequence diagram so recruiters can inspect the system thinking faster.',
+    ],
+  },
+  {
+    slug: 'budgeting-engine',
+    studyId: 'budgeting-app',
+    eyebrow: 'Public Build Proof',
+    strapline:
+      'A household finance platform focused on transaction aggregation, budgeting visibility, long-term net worth tracking, and performance-conscious query design.',
+    publicSummary:
+      'This project is useful recruiter proof because it is not just a personal dashboard. It combines backend design, caching strategy, scheduled upkeep, and opinionated financial views into a system that has to stay fast and trustworthy over time.',
+    recruiterAngle:
+      'Strongest signal for recruiters: end-to-end product engineering with data modeling, serverless backend behavior, performance tuning, and decision-oriented visualization.',
+    status: 'Working personal system with clear room for a more polished public demo.',
+    repositoryStatus:
+      'The technical architecture is presented here while the underlying financial records remain private.',
+    metrics: [
+      { value: 'Sub-50ms', label: 'query targets supported through indexing and caching discipline' },
+      { value: 'Real-time', label: 'cashflow and surplus visibility across active budgets' },
+      { value: 'Cron-backed', label: 'serverless upkeep used to reduce cold-start friction' },
+      { value: 'Single ledger', label: 'family transactions and investment context centralized in one system' },
+    ],
+    challenge:
+      'Most consumer finance tools are either generic, inflexible, or weak at combining budgeting, transaction visibility, and long-horizon net worth context in a way that matches how a real household actually reviews money.',
+    constraints: [
+      'Financial data is sensitive, so the public-facing story has to explain system quality without exposing actual records.',
+      'Serverless performance matters because a sluggish dashboard undermines trust even when the calculations are correct.',
+      'The application has to handle both operational views, like recent cashflow, and longitudinal views, like investment progress.',
+    ],
+    architecture: [
+      {
+        title: 'Backend and APIs',
+        detail:
+          'Serverless endpoints handle read and write workflows while keeping the application deployable on lightweight infrastructure.',
+      },
+      {
+        title: 'Data layer',
+        detail:
+          'Supabase provides the relational core for transactions, budget categories, cashflow history, and investment tracking.',
+      },
+      {
+        title: 'Performance layer',
+        detail:
+          'Caching and indexing decisions are used deliberately so the dashboard stays responsive instead of devolving into slow ad hoc queries.',
+      },
+      {
+        title: 'Decision surface',
+        detail:
+          'Recharts-based views expose surplus, trends, and anomalies in a way that supports action rather than decorative reporting.',
+      },
+    ],
+    productDecisions: [
+      'Optimized for fast recurring reads because a finance dashboard is only useful if people will actually open it often.',
+      'Used scheduled upkeep to reduce serverless cold-start pain instead of pretending the platform defaults were sufficient.',
+      'Designed the interface around cashflow decisions and anomaly review, not only net worth vanity metrics.',
+    ],
+    publicProof: [
+      'The case study makes the performance goals, automation design, and modeling priorities explicit for outside reviewers.',
+      'The build demonstrates that I can move from schema and backend logic into a user-facing decision surface without changing problem domains.',
+      'Sensitive household data remains private, but the technical constraints and implementation choices are concrete enough to assess.',
+    ],
+    nextIterations: [
+      'Publish a sanitized schema and request-flow walkthrough showing how transactions, budgets, and projections connect.',
+      'Capture redacted screenshots or seeded demo states so viewers can inspect the actual dashboard experience.',
+      'Add tests or benchmarks that make the performance claims easier for an external reviewer to trust quickly.',
+    ],
+  },
+] satisfies PublicProofPage[];
+
+export function getCaseStudyById(id: string) {
+  return caseStudies.find((study) => study.id === id);
+}
+
+export function getPublicProofPageBySlug(slug: string) {
+  return publicProofPages.find((page) => page.slug === slug);
+}

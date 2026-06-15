@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState } from 'react';
 import { caseStudies } from '@/lib/portfolio';
 import { CheckCircle2 } from 'lucide-react';
@@ -113,6 +114,16 @@ export default function Projects() {
                     </span>
                   ))}
                 </div>
+                {study.proofPageSlug ? (
+                  <Link className="case-proof-link" href={`/projects/${study.proofPageSlug}`}>
+                    Read the full case study
+                  </Link>
+                ) : (
+                  <p className="case-proof-note">
+                    Enterprise implementation details stay high-level here because the underlying
+                    systems and data are proprietary.
+                  </p>
+                )}
               </aside>
             </article>
           </ScrollReveal>

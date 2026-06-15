@@ -92,7 +92,7 @@ A custom, end-to-end e-commerce platform and builder interface built for custom 
 * **Complex Integrations**: Synced data with Square APIs for payments/orders and AWS S3 for media storage, and used OpenAI's API to construct custom board recommendation chat assistants.`,
         image_url: 'louie_boards', // We will generate this asset using generate_image or CSS placeholder
         tags: ['Next.js', 'Django', 'Supabase', 'Square API', 'OpenAI'],
-        github_url: 'https://github.com/jeremydowdy/louie_boards_app',
+        github_url: 'https://github.com/DataScience-JDow/louie_boards_app',
         live_url: 'https://louie-boards-app.vercel.app',
         featured: true
       },
@@ -108,7 +108,7 @@ A high-performance personal budgeting dashboard that helps users track their net
 * **Data Layer & Types**: Leveraged Prisma ORM with Next.js 16 to guarantee compile-time type-safety across all database entities, implementing custom transaction caching to speed up dashboard loads.`,
         image_url: 'budgeting_app',
         tags: ['Next.js 16', 'TypeScript', 'Prisma', 'Plaid API', 'Recharts'],
-        github_url: 'https://github.com/jeremydowdy/budgeting_app',
+        github_url: 'https://github.com/DataScience-JDow/budgeting_app',
         live_url: 'https://budgeting-app-liart.vercel.app',
         featured: true
       },
@@ -124,7 +124,7 @@ An autonomous software development assistant designed to collaborate with develo
 * **Cross-CLI Integration**: Interacts directly with GitHub, Vercel, and Supabase CLI tools locally to create and release builds end-to-end.`,
         image_url: 'antigravity_engine',
         tags: ['Node.js', 'LLM Agentic Framework', 'MCP', 'Bash Automation'],
-        github_url: 'https://github.com/jeremydowdy/personal_website', // will be this repo
+        github_url: 'https://github.com/DataScience-JDow/personal_website', // will be this repo
         live_url: null,
         featured: false
       }

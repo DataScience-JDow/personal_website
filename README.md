@@ -1,36 +1,112 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Jeremy Dowdy Personal Website
 
-## Getting Started
+Recruiter-facing portfolio site for Jeremy Dowdy. The site presents case studies, public proof pages, skills, and a contact workflow backed by Postgres.
 
-First, run the development server:
+## Stack
+
+- Next.js 16 App Router
+- React 19
+- TypeScript
+- Vercel
+- Postgres via the `postgres` package
+
+## Local Setup
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Create or update `.env.local` with:
+
+```bash
+DATABASE_URL=<your postgres connection string>
+```
+
+3. Start the dev server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Common Commands
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run dev
+npm run lint
+npm run build
+npm run start
+```
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```text
+src/app/
+  layout.tsx                  App shell
+  page.tsx                    Homepage composition
+  actions.ts                  Server actions, including contact form submission
+  projects/[slug]/page.tsx    Public proof / case-study detail pages
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+src/components/
+  Hero.tsx
+  Projects.tsx
+  PublicProof.tsx
+  Skills.tsx
+  ContactForm.tsx
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+src/lib/
+  portfolio.ts                Core portfolio content and structured proof data
+  db.ts                       Shared Postgres connection helper
 
-## Deploy on Vercel
+docs/
+  portfolio-maintenance.md    Rules for when project work should update the site
+  PROJECT_CONTEXT.md          Repo operating context
+  DECISIONS.md                Durable project decisions
+  HANDOFF.md                  Current state and open work
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+public/
+  jeremy-dowdy-resume.pdf
+  jeremy-dowdy-headshot.jpg
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## How The Site Works
+
+- The homepage is assembled in `src/app/page.tsx`.
+- Structured portfolio content lives in `src/lib/portfolio.ts`.
+- Public proof pages are routed under `src/app/projects/[slug]/page.tsx`.
+- The contact form submits through `src/app/actions.ts`.
+- Database access is centralized in `src/lib/db.ts` and requires `DATABASE_URL`.
+
+## Content Ownership
+
+When a personal project changes materially, review whether the site should change in the same round of work.
+
+Start with:
+
+- `AGENTS.md`
+- `docs/portfolio-maintenance.md`
+- `docs/PROJECT_CONTEXT.md`
+
+The main content touchpoints are:
+
+- `src/lib/portfolio.ts`
+- `src/app/page.tsx`
+- `src/app/projects/[slug]/page.tsx`
+- `public/jeremy-dowdy-resume.pdf`
+
+## Contact Form Notes
+
+The contact form writes to `portfolio.messages` in Postgres. Before changing that flow, verify:
+
+- `DATABASE_URL` is present
+- the target schema/table still exists
+- any UI changes stay aligned with the server action in `src/app/actions.ts`
+
+## Current Gaps
+
+- No dedicated automated test suite is documented yet
+- The repo has active local changes, so edits should stay scoped and diff-aware
+- This README should evolve as deployment, schema, or content workflows change
