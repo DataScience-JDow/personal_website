@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "setup:visits": "node scripts/setup-visit-tracking.mjs",
     "start": "next start",
     "lint": "eslint"
   },

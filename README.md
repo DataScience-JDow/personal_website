@@ -22,6 +22,8 @@ npm install
 
 ```bash
 DATABASE_URL=<your postgres connection string>
+VISITS_ADMIN_TOKEN=<long random token for the private visits dashboard>
+VISITS_HASH_SALT=<long random salt for anonymous visitor hashes>
 ```
 
 3. Start the dev server:
@@ -38,6 +40,7 @@ npm run dev
 npm run dev
 npm run lint
 npm run build
+npm run setup:visits
 npm run start
 ```
 
@@ -104,6 +107,17 @@ The contact form writes to `portfolio.messages` in Postgres. Before changing tha
 - `DATABASE_URL` is present
 - the target schema/table still exists
 - any UI changes stay aligned with the server action in `src/app/actions.ts`
+
+## Private Visit Counter
+
+The site tracks non-public visit counts through a first-party `/api/visits` route and stores minimal events in `portfolio.visit_events`.
+
+- The counter is not displayed on public pages.
+- Admin access requires `VISITS_ADMIN_TOKEN`.
+- Open `/admin/authorize?token=<VISITS_ADMIN_TOKEN>` to set the private admin cookie.
+- Open `/admin/exclude-me?token=<VISITS_ADMIN_TOKEN>` from your own browser to set the ignore cookie so your visits are excluded.
+- The visitor hash is anonymous. Set `VISITS_HASH_SALT` in Vercel for stable private hashing that does not depend on the admin token.
+- Run `npm run setup:visits` to create the table explicitly; the app also verifies the table lazily at runtime.
 
 ## Current Gaps
 

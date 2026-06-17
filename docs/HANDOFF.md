@@ -6,6 +6,7 @@
 - Contact form submits through `src/app/actions.ts` using `DATABASE_URL` and `src/lib/db.ts`
 - Portfolio content is maintained in `src/lib/portfolio.ts`
 - Public project detail pages live under `src/app/projects/[slug]/`
+- Private visit tracking is implemented through `/api/visits`, `portfolio.visit_events`, and `/admin/visits`
 
 ## Active Local Changes Observed On 2026-06-14
 
@@ -23,10 +24,12 @@
 
 ## Open Work
 
-- Replace the default `README.md` with a real project readme
 - Keep `src/lib/portfolio.ts` and project detail pages aligned with current recruiter-facing proof
 - Verify the contact form schema and environment assumptions remain correct
 - Record future non-trivial architecture or content decisions in `docs/DECISIONS.md`
+- Set `VISITS_ADMIN_TOKEN` and `VISITS_HASH_SALT` in Vercel before relying on the private visit dashboard in production
+- Visit `/admin/authorize?token=<VISITS_ADMIN_TOKEN>` once to set the private admin cookie
+- Visit `/admin/exclude-me?token=<VISITS_ADMIN_TOKEN>` from Jeremy's browser to exclude his own visits
 
 ## Known Risks
 

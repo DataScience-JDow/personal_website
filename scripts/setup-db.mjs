@@ -67,6 +67,33 @@ async function main() {
       );
     `;
 
+    console.log('Creating "portfolio.visit_events" table...');
+    await sql`
+      CREATE TABLE IF NOT EXISTS portfolio.visit_events (
+        id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+        created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        path TEXT NOT NULL,
+        host TEXT,
+        referrer_host TEXT,
+        country TEXT,
+        visitor_hash TEXT NOT NULL,
+        is_bot BOOLEAN NOT NULL DEFAULT false,
+        environment TEXT
+      );
+    `;
+    await sql`
+      CREATE INDEX IF NOT EXISTS visit_events_created_at_idx
+      ON portfolio.visit_events (created_at DESC);
+    `;
+    await sql`
+      CREATE INDEX IF NOT EXISTS visit_events_path_created_at_idx
+      ON portfolio.visit_events (path, created_at DESC);
+    `;
+    await sql`
+      CREATE INDEX IF NOT EXISTS visit_events_visitor_created_at_idx
+      ON portfolio.visit_events (visitor_hash, created_at DESC);
+    `;
+
     console.log('Hardening "portfolio.messages" for server-side inserts only...');
     await sql`ALTER TABLE portfolio.messages ENABLE ROW LEVEL SECURITY;`;
     await sql`REVOKE ALL ON SCHEMA portfolio FROM anon, authenticated;`;

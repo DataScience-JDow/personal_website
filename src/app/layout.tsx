@@ -1,6 +1,8 @@
 import ActiveNavTracker from '@/components/ActiveNavTracker';
+import VisitTracker from '@/components/VisitTracker';
 import type { Metadata } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
+import { Suspense } from 'react';
 import './globals.css';
 
 const inter = Inter({
@@ -56,6 +58,9 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <body>
         <ActiveNavTracker />
+        <Suspense fallback={null}>
+          <VisitTracker />
+        </Suspense>
         <main>{children}</main>
         <footer className="site-footer">
           <div className="container footer-inner">
