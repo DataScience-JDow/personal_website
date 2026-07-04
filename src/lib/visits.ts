@@ -202,7 +202,7 @@ export async function getVisitSummary(): Promise<VisitSummary> {
   };
 }
 
-function normalizePath(path: string) {
+export function normalizePath(path: string) {
   const trimmedPath = cleanText(path, 500);
 
   if (!trimmedPath || !trimmedPath.startsWith('/')) {

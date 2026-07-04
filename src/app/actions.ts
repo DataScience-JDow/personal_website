@@ -9,11 +9,16 @@ export interface ActionState {
   error?: string;
 }
 
-export async function submitContactForm(prevState: ActionState | null, formData: FormData): Promise<ActionState> {
-  const name = formData.get('name')?.toString().trim();
-  const email = formData.get('email')?.toString().trim();
-  const message = formData.get('message')?.toString().trim();
-  const website = formData.get('website')?.toString().trim();
+export function validateContactFormInput(input: {
+  name?: string | null;
+  email?: string | null;
+  message?: string | null;
+  website?: string | null;
+}): ActionState | null {
+  const name = input.name?.trim();
+  const email = input.email?.trim();
+  const message = input.message?.trim();
+  const website = input.website?.trim();
 
   if (website) {
     return {
@@ -36,6 +41,21 @@ export async function submitContactForm(prevState: ActionState | null, formData:
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return { success: false, error: 'Please enter a valid email address.' };
+  }
+
+  return null;
+}
+
+export async function submitContactForm(prevState: ActionState | null, formData: FormData): Promise<ActionState> {
+  const name = formData.get('name')?.toString().trim();
+  const email = formData.get('email')?.toString().trim();
+  const message = formData.get('message')?.toString().trim();
+  const website = formData.get('website')?.toString().trim();
+
+  const validationResult = validateContactFormInput({ name, email, message, website });
+
+  if (validationResult) {
+    return validationResult;
   }
 
   try {
