@@ -1,6 +1,7 @@
 'use server'
 
 import { getSql } from '@/lib/db';
+import { ensureMessagesTable } from '@/lib/messages';
 
 export interface ActionState {
   success: boolean;
@@ -39,6 +40,7 @@ export async function submitContactForm(prevState: ActionState | null, formData:
 
   try {
     const sql = getSql();
+    await ensureMessagesTable();
 
     await sql`
       INSERT INTO portfolio.messages (name, email, message)

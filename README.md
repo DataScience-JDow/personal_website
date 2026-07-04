@@ -108,6 +108,9 @@ The contact form writes to `portfolio.messages` in Postgres. Before changing tha
 - the target schema/table still exists
 - any UI changes stay aligned with the server action in `src/app/actions.ts`
 
+There is also a private inbox at `/admin/messages`, protected by the same admin cookie flow as `/admin/visits`.
+Use `/admin/authorize?token=<VISITS_ADMIN_TOKEN>&next=/admin/messages` to land directly on the inbox after authorization.
+
 ## Private Visit Counter
 
 The site tracks non-public visit counts through a first-party `/api/visits` route and stores minimal events in `portfolio.visit_events`.
