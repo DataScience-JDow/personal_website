@@ -1,6 +1,7 @@
 'use client';
 
-import { submitContactForm, type ActionState } from '@/app/actions';
+import { submitContactForm } from '@/app/actions';
+import type { ActionState } from '@/lib/contact-form';
 import { CheckCircle2, ExternalLink, LoaderCircle, Mail, Send } from 'lucide-react';
 import { useActionState } from 'react';
 import { useFormStatus } from 'react-dom';

@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 
 import { NextRequest } from 'next/server';
 
-import { submitContactForm, validateContactFormInput } from '@/app/actions';
+import { submitContactForm } from '@/app/actions';
+import { validateContactFormInput } from '@/lib/contact-form';
 import { GET as authorizeAdmin } from '@/app/admin/authorize/route';
 import { ADMIN_COOKIE, isAuthorizedAdmin, normalizePath } from '@/lib/visits';
 
