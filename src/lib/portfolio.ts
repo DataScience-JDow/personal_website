@@ -263,6 +263,29 @@ export const caseStudies = [
     category: 'personal',
     proofPageSlug: 'budgeting-engine',
   },
+  {
+    id: 'hermes-lifescore',
+    title: 'Hermes LifeScore Health Reflection System',
+    role: 'Creator & Full-stack Systems Developer',
+    context:
+      'Built a privacy-conscious personal health reflection system that turns Apple Health signals and short subjective check-ins into deterministic daily scores, weekly trends, and low-friction Telegram coaching loops.',
+    architecture: [
+      'Native iOS HealthKit collector for daily sleep, activity, and recovery summaries',
+      'HMAC-signed HTTP ingest service backed by a local SQLite data model',
+      'Deterministic readiness and activation scoring with explicit daily confidence and weekly coverage signals',
+      'Hermes automations for sync monitoring, morning guidance, evening check-ins, and weekly review',
+    ],
+    impact: [
+      'Replaced scattered health signals with one consistent daily reflection workflow.',
+      'Made missing data and low-confidence scores visible instead of presenting false precision.',
+      'Added operational monitoring and deduplicated delivery so the system can run as a durable personal automation.',
+    ],
+    stack: ['Python', 'Swift', 'HealthKit', 'SQLite', 'HMAC', 'Hermes Agent', 'Telegram'],
+    proof:
+      'An end-to-end personal data system spanning on-device collection, secure ingest, deterministic analytics, automation, and human reflection.',
+    category: 'personal',
+    proofPageSlug: 'hermes-lifescore',
+  },
 ] satisfies CaseStudy[];
 
 export const capabilityGroups = [
@@ -525,6 +548,73 @@ export const publicProofPages = [
       'Publish a sanitized schema and request-flow walkthrough showing how transactions, budgets, and projections connect.',
       'Capture redacted screenshots or seeded demo states so viewers can inspect the actual dashboard experience.',
       'Add tests or benchmarks that make the performance claims easier for an external reviewer to trust quickly.',
+    ],
+  },
+  {
+    slug: 'hermes-lifescore',
+    studyId: 'hermes-lifescore',
+    eyebrow: 'Public Build Proof',
+    strapline:
+      'A privacy-conscious health reflection system connecting Apple Health collection, authenticated local ingest, deterministic scoring, and scheduled Telegram coaching loops.',
+    publicSummary:
+      'Hermes LifeScore is a practical personal data product rather than a medical model. It combines objective HealthKit summaries with short subjective check-ins, computes explainable daily scores with visible confidence, and uses automation to turn those signals into small reflection prompts instead of another dashboard to remember to open.',
+    recruiterAngle:
+      'Strongest signal for recruiters: end-to-end data-product judgment across mobile collection, secure APIs, time-series modeling, testable scoring logic, observability, and human-centered automation.',
+    status:
+      'Deployed personal pilot with scheduled monitoring; the weekly review is scheduled through the Hermes coding profile, while regular iPhone collection still depends on completing the daily Shortcut workflow.',
+    repositoryStatus:
+      'Architecture and redacted examples can be discussed publicly; real health values, device identifiers, secrets, and messaging metadata remain private.',
+    metrics: [
+      { value: '4 stages', label: 'collect, authenticate, score, and reflect in one explicit data flow' },
+      { value: 'HMAC', label: 'signed ingest requests protect the local write boundary' },
+      { value: 'Daily + weekly', label: 'immediate guidance paired with trend-level reflection' },
+      { value: 'Explainable', label: 'deterministic scoring exposes coverage and confidence' },
+    ],
+    challenge:
+      'Apple Health contains useful signals, but raw metrics do not automatically create better decisions. The real product challenge was building a trustworthy path from private device data to concise, timely reflection without inventing medical certainty or requiring constant dashboard use.',
+    constraints: [
+      'Raw HealthKit records remain locally stored; selected generated summaries and subjective check-ins traverse Telegram, and public artifacts must use synthetic or redacted values.',
+      'Missing daily inputs must reduce reported coverage and prevent unsupported trend claims rather than silently becoming zeroes.',
+      'Automation must be deduplicated and observable so reminders help without becoming noisy.',
+    ],
+    architecture: [
+      {
+        title: 'On-device collection',
+        detail:
+          'A Swift HealthKit collector summarizes daily sleep, movement, and recovery signals before sending only the bounded daily payload needed by the scoring system.',
+      },
+      {
+        title: 'Authenticated ingest',
+        detail:
+          'In the deployed configuration, the local Python service verifies body-signed HMAC authentication before accepting payloads, keeping the write boundary explicit and rejecting malformed or unauthorized requests.',
+      },
+      {
+        title: 'Deterministic analytics',
+        detail:
+          'SQLite-backed scoring combines objective and subjective inputs into explainable readiness and activation scores, with coverage and confidence carried into daily and weekly summaries.',
+      },
+      {
+        title: 'Reflection automation',
+        detail:
+          'Hermes jobs monitor data freshness and deliver morning and evening prompts through Telegram; a separate coding-profile schedule delivers eligible weekly reviews while durable state suppresses duplicate delivery.',
+      },
+    ],
+    productDecisions: [
+      'Used deterministic rules instead of opaque ML because traceability matters more than novelty for a personal health reflection tool.',
+      'Kept collection and scoring boundaries explicit so device sync, storage, analytics, and messaging failures can be debugged independently.',
+      'Designed confidence and missing-data behavior as product features to avoid false precision.',
+      'Chose scheduled Telegram prompts over a larger dashboard because the smallest useful interface is the one that fits the existing routine.',
+    ],
+    publicProof: [
+      'The architecture documents a complete mobile-to-automation data path without exposing personal health records.',
+      'Implementation evidence available for discussion includes automated coverage of scoring, date boundaries, sparse data, HMAC helpers, and weekly-summary output.',
+      'Public examples use synthetic or redacted health values while preserving the real schema and workflow decisions.',
+      'Operational evidence includes health checks, sync monitoring, delivery eligibility gates, and deduplication rather than only happy-path screenshots.',
+    ],
+    nextIterations: [
+      'Publish a public-safe architecture diagram for the HealthKit-to-Telegram flow.',
+      'Add a synthetic weekly summary example that demonstrates confidence and sparse-data handling.',
+      'Evaluate longer-term trend summaries only after enough consistent history exists to support them responsibly.',
     ],
   },
 ] satisfies PublicProofPage[];

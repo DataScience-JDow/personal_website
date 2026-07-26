@@ -25,7 +25,7 @@ export default function PublicProof() {
         <div className="section-heading">
           <p className="eyebrow">Public proof</p>
           <h2 id="public-proof-title">
-            <span className="gradient-text">The two projects a recruiter can inspect more deeply right now.</span>
+            <span className="gradient-text">Three projects a recruiter can inspect more deeply right now.</span>
           </h2>
           <p>
             Most of my highest-leverage enterprise work is proprietary. These public case studies
