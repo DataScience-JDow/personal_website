@@ -67,6 +67,35 @@ export type ProofArchitectureItem = {
   detail: string;
 };
 
+export type ProofDiagramStage = {
+  id: string;
+  title: string;
+  detail: string;
+  trustZone: string;
+  failureSignal: string;
+};
+
+export type ProofDiagramBoundary = {
+  afterStage: string;
+  label: string;
+  detail: string;
+};
+
+export type ProofDiagramFeedbackFlow = {
+  fromStage: string;
+  toStage: string;
+  label: string;
+  detail: string;
+};
+
+export type ProofArchitectureDiagram = {
+  title: string;
+  description: string;
+  stages: ProofDiagramStage[];
+  trustBoundaries: ProofDiagramBoundary[];
+  feedbackFlows: ProofDiagramFeedbackFlow[];
+};
+
 export type PublicProofPage = {
   slug: string;
   studyId: string;
@@ -80,6 +109,7 @@ export type PublicProofPage = {
   challenge: string;
   constraints: string[];
   architecture: ProofArchitectureItem[];
+  diagram?: ProofArchitectureDiagram;
   productDecisions: string[];
   publicProof: string[];
   nextIterations: string[];
@@ -599,6 +629,78 @@ export const publicProofPages = [
           'Hermes jobs monitor data freshness and deliver morning and evening prompts through Telegram; a separate coding-profile schedule delivers eligible weekly reviews while durable state suppresses duplicate delivery.',
       },
     ],
+    diagram: {
+      title: 'LifeScore data flow and trust boundaries',
+      description:
+        'The primary outbound path turns selected HealthKit signals into scheduled, health-derived guidance and reflection prompts. Subjective check-in replies return through Telegram to local scoring, so the messaging boundary is explicitly bidirectional.',
+      stages: [
+        {
+          id: 'healthkit',
+          title: 'HealthKit',
+          detail: 'Selected sleep, activity, and recovery signals stay on device until summarized.',
+          trustZone: 'iPhone',
+          failureSignal: 'Permission or collection failure',
+        },
+        {
+          id: 'signed-summary',
+          title: 'Signed iOS summary',
+          detail: 'The collector creates a bounded daily payload and signs the request body.',
+          trustZone: 'iPhone',
+          failureSignal: 'Summary or delivery failure',
+        },
+        {
+          id: 'authenticated-ingest',
+          title: 'Authenticated ingest',
+          detail: 'The local service verifies HMAC authentication before accepting a write.',
+          trustZone: 'Local service',
+          failureSignal: 'Authentication reject or invalid payload',
+        },
+        {
+          id: 'sqlite-scoring',
+          title: 'SQLite and scoring',
+          detail: 'Local records feed deterministic scores with explicit coverage and confidence.',
+          trustZone: 'Local data',
+          failureSignal: 'Missing coverage or scoring error',
+        },
+        {
+          id: 'hermes-scheduler',
+          title: 'Hermes scheduler',
+          detail: 'Eligible jobs check freshness and durable delivery state before producing a prompt.',
+          trustZone: 'Local automation',
+          failureSignal: 'Stale sync, ineligible run, or job failure',
+        },
+        {
+          id: 'telegram-reflection',
+          title: 'Telegram reflection',
+          detail:
+            'Generated guidance goes out while subjective check-in replies return for local parsing and scoring.',
+          trustZone: 'Messaging platform',
+          failureSignal: 'Delivery, reply parsing, or duplicate-suppression event',
+        },
+      ],
+      trustBoundaries: [
+        {
+          afterStage: 'signed-summary',
+          label: 'Authenticated write boundary',
+          detail: 'HMAC verification gates data entering the local service.',
+        },
+        {
+          afterStage: 'hermes-scheduler',
+          label: 'Messaging boundary',
+          detail:
+            'Generated health-derived guidance crosses outbound; subjective check-in replies cross inbound for local parsing and scoring.',
+        },
+      ],
+      feedbackFlows: [
+        {
+          fromStage: 'telegram-reflection',
+          toStage: 'sqlite-scoring',
+          label: 'Subjective check-in reply',
+          detail:
+            'Mood, energy, focus, stress, learning, and optional reflection text return through Telegram for local parsing and scoring.',
+        },
+      ],
+    },
     productDecisions: [
       'Used deterministic rules instead of opaque ML because traceability matters more than novelty for a personal health reflection tool.',
       'Kept collection and scoring boundaries explicit so device sync, storage, analytics, and messaging failures can be debugged independently.',
@@ -612,7 +714,7 @@ export const publicProofPages = [
       'Operational evidence includes health checks, sync monitoring, delivery eligibility gates, and deduplication rather than only happy-path screenshots.',
     ],
     nextIterations: [
-      'Publish a public-safe architecture diagram for the HealthKit-to-Telegram flow.',
+      'Add a synthetic signed-request walkthrough that shows payload validation without exposing private inputs.',
       'Add a synthetic weekly summary example that demonstrates confidence and sparse-data handling.',
       'Evaluate longer-term trend summaries only after enough consistent history exists to support them responsibly.',
     ],
@@ -623,6 +725,6 @@ export function getCaseStudyById(id: string) {
   return caseStudies.find((study) => study.id === id);
 }
 
-export function getPublicProofPageBySlug(slug: string) {
+export function getPublicProofPageBySlug(slug: string): PublicProofPage | undefined {
   return publicProofPages.find((page) => page.slug === slug);
 }

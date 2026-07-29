@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import ArchitectureDiagram from '@/components/ArchitectureDiagram';
 import {
   caseStudies,
   getCaseStudyById,
@@ -159,6 +160,12 @@ export default async function ProjectProofPage({ params }: ProjectProofPageProps
               </article>
             ))}
           </div>
+
+          {proofPage.diagram ? (
+            <div className="project-architecture-diagram">
+              <ArchitectureDiagram diagram={proofPage.diagram} />
+            </div>
+          ) : null}
         </div>
       </section>
 

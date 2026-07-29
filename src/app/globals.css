@@ -1251,6 +1251,177 @@
     gap: 20px;
   }
 
+  .project-architecture-diagram {
+    margin-top: 28px;
+  }
+
+  .architecture-diagram {
+    overflow: hidden;
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-lg);
+    background: rgba(10, 14, 23, 0.72);
+    box-shadow: var(--shadow);
+  }
+
+  .architecture-diagram-canvas {
+    overflow-x: auto;
+    border-bottom: 1px solid var(--line);
+    background:
+      linear-gradient(rgba(6, 214, 160, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(6, 214, 160, 0.025) 1px, transparent 1px);
+    background-size: 24px 24px;
+    scrollbar-color: var(--accent) var(--bg-strong);
+  }
+
+  .architecture-diagram-canvas svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .architecture-diagram-connector {
+    stroke: #5b6779;
+    stroke-width: 2;
+  }
+
+  .architecture-diagram-arrowhead {
+    fill: var(--accent);
+  }
+
+  .architecture-diagram-feedback path {
+    fill: none;
+    stroke: #fb7185;
+    stroke-dasharray: 6 5;
+    stroke-width: 1.75;
+  }
+
+  .architecture-diagram-feedback text {
+    fill: #fda4af;
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: 10px;
+    font-weight: 700;
+  }
+
+  .architecture-diagram-stage rect {
+    fill: #111827;
+    stroke: rgba(6, 214, 160, 0.32);
+    stroke-width: 1.5;
+  }
+
+  .architecture-diagram-stage circle {
+    fill: var(--gold);
+  }
+
+  .architecture-diagram-zone,
+  .architecture-diagram-signal,
+  .architecture-diagram-boundary text {
+    font-family: var(--font-mono, ui-monospace, monospace);
+  }
+
+  .architecture-diagram-zone {
+    fill: var(--accent);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .architecture-diagram-title {
+    fill: #ffffff;
+    font-size: 14px;
+    font-weight: 800;
+  }
+
+  .architecture-diagram-signal {
+    fill: #c6cdd8;
+    font-size: 11px;
+  }
+
+  .architecture-diagram-boundary line {
+    stroke: rgba(245, 158, 11, 0.72);
+    stroke-dasharray: 5 5;
+    stroke-width: 1.5;
+  }
+
+  .architecture-diagram-boundary text {
+    fill: #fbbf24;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+  }
+
+  .architecture-diagram figcaption {
+    display: grid;
+    gap: 6px;
+    padding: 22px 24px;
+  }
+
+  .architecture-diagram figcaption strong {
+    color: #ffffff;
+    font-size: 1.1rem;
+  }
+
+  .architecture-diagram figcaption span,
+  .architecture-diagram-fallback li > span,
+  .architecture-diagram-boundary-notes li {
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .architecture-diagram-fallback {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--line);
+  }
+
+  .architecture-diagram-fallback li {
+    display: grid;
+    align-content: start;
+    gap: 8px;
+    padding: 20px;
+    background: #0d1320;
+  }
+
+  .architecture-diagram-fallback li > strong {
+    color: #ffffff;
+  }
+
+  .architecture-diagram-fallback li > span {
+    font-size: 0.86rem;
+  }
+
+  .architecture-diagram-fallback .architecture-diagram-fallback-zone {
+    color: var(--accent);
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .architecture-diagram-fallback b,
+  .architecture-diagram-boundary-notes b {
+    color: #d4d9e1;
+  }
+
+  .architecture-diagram-boundary-notes {
+    display: grid;
+    gap: 10px;
+    padding: 20px 24px 24px;
+  }
+
+  .architecture-diagram-boundary-notes > strong {
+    color: #fbbf24;
+  }
+
+  .architecture-diagram-boundary-notes ul {
+    display: grid;
+    gap: 6px;
+  }
+
   .project-proof-next-item {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -1869,6 +2040,10 @@
       grid-template-columns: 1fr;
     }
 
+    .architecture-diagram-fallback {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .timeline::before {
       display: none;
     }
@@ -1974,6 +2149,15 @@
     .project-proof-panel,
     .project-proof-next-item {
       padding: 22px;
+    }
+
+    .architecture-diagram-fallback {
+      grid-template-columns: 1fr;
+    }
+
+    .architecture-diagram figcaption,
+    .architecture-diagram-boundary-notes {
+      padding-inline: 18px;
     }
 
     .section-muted {
